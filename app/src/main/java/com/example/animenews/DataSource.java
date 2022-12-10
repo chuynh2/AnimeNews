@@ -26,7 +26,15 @@ public class DataSource {
 
     private void setupYoutubePool() {
         youtubePool.add(R.string.youtube_1);
-
+        youtubePool.add(R.string.youtube_2);
+        youtubePool.add(R.string.youtube_3);
+        youtubePool.add(R.string.youtube_4);
+        youtubePool.add(R.string.youtube_5);
+        youtubePool.add(R.string.youtube_6);
+        youtubePool.add(R.string.youtube_7);
+        youtubePool.add(R.string.youtube_8);
+        youtubePool.add(R.string.youtube_9);
+        youtubePool.add(R.string.youtube_10);
     }
 
     private void setupPhotoPool() {

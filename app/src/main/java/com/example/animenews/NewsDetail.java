@@ -20,6 +20,7 @@ public class NewsDetail extends YouTubeBaseActivity {
     private ImageView imageView;
     private TextView news;
     private int position;
+
     private DataSource dataSource;
 
     public DrawerLayout drawerLayout;
@@ -32,11 +33,35 @@ public class NewsDetail extends YouTubeBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.news_detail);
 
+        drawerLayout = findViewById(R.id.my_drawer_layout);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
+
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        dataSource = new DataSource();
+        imageView = findViewById(R.id.image);
+        news = findViewById(R.id.news);
+        Intent i = getIntent();
+        position = i.getIntExtra("position", 0);
+
+        imageView.setImageResource(dataSource.getphotoHdPool().
+                get(position));
+
+        news.setText(getResources().getString(dataSource.getnewsPool()
+                .get(position)));
+
+
+        String youtubeId = getResources().getString(dataSource.getYoutubePool()
+                .get(position));
+
         youTubePlayerView = findViewById(R.id.youtube_player);
         YouTubePlayer.OnInitializedListener listener = new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
-                youTubePlayer.cueVideo("SWAMTXfqer0");
+                youTubePlayer.cueVideo(youtubeId);
                 youTubePlayer.play();
             }
 
@@ -46,26 +71,6 @@ public class NewsDetail extends YouTubeBaseActivity {
             }
         };
         youTubePlayerView.initialize("AIzaSyDHYMAypYUGFR-VSHWHMbsry8cZI4LM7ps", listener);
-
-        drawerLayout = findViewById(R.id.my_drawer_layout);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
-
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
-
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        Intent i = getIntent();
-        position = i.getIntExtra("position", 0);
-
-        dataSource = new DataSource();
-        imageView = findViewById(R.id.image);
-        news = findViewById(R.id.news);
-        imageView.setImageResource(dataSource.getphotoHdPool().
-                get(position));
-
-        news.setText(getResources().getString(dataSource.getnewsPool()
-                .get(position)));
 
     }
 
