@@ -6,6 +6,11 @@ public class DataSource {
     private ArrayList<Integer> photoPool;
     private ArrayList<Integer> newsPool;
     private ArrayList<Integer> photoHdPool;
+    private ArrayList<Integer> youtubePool;
+
+    public ArrayList<Integer> getYoutubePool() {
+        return youtubePool;
+    }
 
     public ArrayList<Integer> getphotoHdPool() {
         return photoHdPool;
@@ -18,6 +23,12 @@ public class DataSource {
     public ArrayList<Integer> getnewsPool() {
         return newsPool;
     }
+
+    private void setupYoutubePool() {
+        youtubePool.add(R.string.youtube_1);
+
+    }
+
     private void setupPhotoPool() {
         photoPool.add(R.drawable.dark_gathering);
         photoPool.add(R.drawable.slime_film);
@@ -56,15 +67,15 @@ public class DataSource {
         photoHdPool.add(R.drawable.oyukiumi_no_kaina);
     }
 
-    public int getDataSourceLength() {
-        return photoPool.size();
-    }
+    public int getDataSourceLength() { return photoPool.size(); }
 
     public DataSource() {
         photoPool = new ArrayList();
         newsPool = new ArrayList();
         photoHdPool = new ArrayList();
+        youtubePool = new ArrayList();
 
+        setupYoutubePool();
         setupPhotoPool();
         setupNewsPool();
         setupPhotoHDPool();
